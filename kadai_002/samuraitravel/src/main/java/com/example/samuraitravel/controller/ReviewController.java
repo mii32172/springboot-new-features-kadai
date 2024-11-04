@@ -95,6 +95,8 @@ public class ReviewController {
 		return "review/edit";
 	}
 	
+	
+	
 	@PostMapping("/{id}/update")
 	public String update(@PathVariable(name = "id") Integer id, @ModelAttribute @Validated ReviewEditForm reviewEditForm, BindingResult bindingResult, RedirectAttributes redirectAttributes, @AuthenticationPrincipal UserDetailsImpl userDetailsImpl, Model model) {
 		Review review = new Review();
@@ -110,7 +112,7 @@ public class ReviewController {
 		reviewService.update(id, reviewEditForm, userDetailsImpl);
 		redirectAttributes.addFlashAttribute("successMessage", "レビューの内容を編集しました。");
 		
-		return "redirect:/houses";
+		return "redirect:/houses/{id}";
 	}
 	
 	@PostMapping("/{id}/delete")
@@ -122,7 +124,7 @@ public class ReviewController {
 		
 		redirectAttributes.addFlashAttribute("successMessage", "レビューを削除しました。");
 		
-		return "redirect:/houses";
+		return "redirect:/houses/{id}";
 	}
 	
 }
