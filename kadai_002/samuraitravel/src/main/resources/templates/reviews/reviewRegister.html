@@ -22,7 +22,7 @@
 								<ol class="breadcrumb mb-0">
 									<li class="breadcrumb-item"><a th:href="@{/}">ホーム</a></li>>
 									<li class="breadcrumb-item"><a th:href="@{/houses/index}">民宿一覧</a></li>
-									<li class="breadcrumb-item"><a th:href="@{/houses/show}">民宿詳細</a></li>
+									<li class="breadcrumb-item"><a th:href="@{/houses/__${house.getId()}__/show}">民宿詳細</a></li>
 									<li class="breadcrumb-item active" aria-current="page">レビュー登録</li>
 								</ol>
 							</nav>
@@ -35,7 +35,7 @@
 							<h1 class="mb-4 text-center" th:text="${house.getName()} + ' のレビュー投稿'"></h1>
 							
 
-							<form method="post" th:action="@{/review/{houseId}/create(houseId = ${house.id})}" th:object="${review}" class="w-100">
+							<form method="post" th:action="@{/houses/__${house.getId()}__/reviews/create}" th:object="${review}" class="w-100">
 								
 								<div class="col-form-label text-md-left fw-bold">
 									<span th:text="${#authentication.principal.user.name}"></span>

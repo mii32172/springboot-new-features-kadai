@@ -33,8 +33,8 @@
 											<h3 class="card-title mb-3" th:text="${review.getName()}"></h3>
 											
 											<div th:if="${#authentication.principal.user.id} == ${review.getuserId()}" class="my-edit-delete-buttons" sec:authorize="isAuthenticated()">
-												<a class="text-right" th:href="@{/review/__${review.getId()}__/edit}">編集</a>
-												<a th:href="@{/review/__${review.getId()}__/delete}" class="samuraitravel-link-danger" data-bs-toggle="modal" th:data-bs-target="${'#deleteReviewModal' + review.getId()}">削除</a>
+												<a class="text-right" th:href="@{/houses/__${house.getId()}__/reviews/__${review.getId()}__/edit}">編集</a>
+												<a th:href="@{/houses/__${house.getId()}__/reviews/__${review.getId()}__/delete}" class="samuraitravel-link-danger" data-bs-toggle="modal" th:data-bs-target="${'#deleteReviewModal' + review.getId()}">削除</a>
 											</div>
 											
 											<p class="card-text mb-2">
@@ -59,7 +59,7 @@
 															<p>ほんとに削除してもよろしいですか？</p>
 														</div>
 														 <div class="modal-footer">
-															 <form method="post" th:action="@{/review/{id}/delete(id=${review.id})}" sec:authorize="isAuthenticated()">
+															 <form method="post" th:action="@{/houses/__${house.getId()}__/reviews/{id}/delete(id=${review.id})}" sec:authorize="isAuthenticated()">
 																<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">キャンセル</button>
 																 <button type="submit" class="btn samuraitravel-btn-danger text-white shadow-sm">削除</button>
 															 </form>
@@ -80,15 +80,15 @@
 								<ul class="pagination">
 									<li class="page-item">
 										<span th:if="${reviewPage.isFirst()}" class="page-link disabled">前</span>
-										<a th:unless="${reviewPage.isFirst()}" th:href="@{/review/__${house.getId()}__(page = ${reviewPage.getNumber() - 1})}" class="page-link samuraitravel-page-link">前</a>
+										<a th:unless="${reviewPage.isFirst()}" th:href="@{/houses/__${house.getId()}__/reviews(page = ${reviewPage.getNumber() - 1})}" class="page-link samuraitravel-page-link">前</a>
 									</li>
 									<li th:each="i : ${#numbers.sequence(0, reviewPage.getTotalPages() - 1)}" class="page-item">
 										<span th:if="${i == reviewPage.getNumber()}" class="page-link active samuraitravel-active" th:text="${i + 1}"></span>
-										<a th:unless="${i == reviewPage.getNumber()}" th:href="@{/review/__${house.getId()}__(page = ${i})}" class="page-link samuraitravel-page-link" th:text="${i + 1}"></a>
+										<a th:unless="${i == reviewPage.getNumber()}" th:href="@{/houses/__${house.getId()}__/reviews(page = ${i})}" class="page-link samuraitravel-page-link" th:text="${i + 1}"></a>
 									</li>
 									<li class="page-item">
 										<span th:if="${reviewPage.isLast()}" class="page-link disabled">次</span>
-										<a th:unless="${reviewPage.isLast()}" th:href="@{/review/__${house.getId()}__(page = ${reviewPage.getNumber() + 1})}" class="page-link samuraitravel-page-link">次</a>
+										<a th:unless="${reviewPage.isLast()}" th:href="@{/houses/__${house.getId()}__/reviews(page = ${reviewPage.getNumber() + 1})}" class="page-link samuraitravel-page-link">次</a>
 									</li>
 								</ul>
 							</nav>

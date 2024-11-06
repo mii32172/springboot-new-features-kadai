@@ -151,7 +151,7 @@
 												<h1 class="mb-4 text-center">レビュー</h1>
 												<div class="review-create">
 													<div class="form-group d-flex justify-content-center my-4" sec:authorize="isAuthenticated()" th:if="${!userHasReviews}">
-													   <a class="btn text-white shadow-sm samuraitravel-btn" th:href="@{/review/registerform/{id}(id = ${house.id})}" >
+													   <a class="btn text-white shadow-sm samuraitravel-btn" th:href="@{/houses/__${house.getId()}__/reviews/registerform}" >
 														 レビューを投稿する
 													   </a>
 													</div>
@@ -172,8 +172,8 @@
 																<div class="card-body position-relative my-positioin">
 																	<h3 class="card-title mb-3" th:text="${review.getName()}"></h3>
 																	<div th:if="${#authentication.principal.user.id} == ${review.getuserId()}" class="my-edit-delete-buttons" sec:authorize="isAuthenticated()">
-																		<a class="text-right" th:href="@{/review/__${review.getId()}__/edit}">編集</a>
-																		<a th:href="@{/review/__${review.getId()}__/delete}" class="samuraitravel-link-danger" data-bs-toggle="modal" th:data-bs-target="${'#deleteReviewModal' + review.getId()}">削除</a>
+																		<a class="text-right" th:href="@{/houses/__${house.getId()}__/reviews/__${review.getId()}__/edit}">編集</a>
+																		<a th:href="@{/houses/__${house.getId()}__/reviews/__${review.getId()}__/delete}" class="samuraitravel-link-danger" data-bs-toggle="modal" th:data-bs-target="${'#deleteReviewModal' + review.getId()}">削除</a>
 																	</div>
 																	
 																	<p class="card-text mb-2">
@@ -202,7 +202,7 @@
 																				<p>ほんとに削除してもよろしいですか？</p>
 																			</div>
 																		    <div class="modal-footer">
-																			    <form method="post" th:action="@{/review/{id}/delete(id=${review.id})}" sec:authorize="isAuthenticated()">
+																			    <form method="post" th:action="@{/houses/__${house.getId()}__/reviews/{id}/delete(id=${review.id})}" sec:authorize="isAuthenticated()">
 																				    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">キャンセル</button>
 																				    <button type="submit" class="btn samuraitravel-btn-danger text-white shadow-sm">削除</button>
 																			    </form>
@@ -216,7 +216,7 @@
 												</div>   
 												
 												<div th:if="${reviewPage.getTotalElements() > 6}">
-													<a th:href="@{/review/{houseId}(houseId=${house.id})}" class="d-flex justify-content-center">全てのレビューを見る</a>
+													<a th:href="@{/houses/__${house.getId()}__/reviews}" class="d-flex justify-content-center">全てのレビューを見る</a>
 												</div>
 											  </div>
 											</div>
