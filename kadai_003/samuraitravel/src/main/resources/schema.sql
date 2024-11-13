@@ -77,5 +77,5 @@ CREATE TABLE IF NOT EXISTS favorites (
      updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
      FOREIGN KEY (house_id) REFERENCES houses(id),
      FOREIGN KEY (user_id) REFERENCES users (id),
-     UNIQUE ( houseId, userId )
+     UNIQUE ( house_Id, user_Id )
 );
